@@ -10,8 +10,8 @@ body{margin:0;font-family:Segoe UI,Roboto,Arial,sans-serif;color:var(--ink);back
 header{background:#111;color:#fff;padding:18px 16px 14px;border-bottom:5px solid var(--g)}
 header h1{margin:0;font-size:22px}
 header p{margin:6px 0 0;font-size:14px;color:#cfcfcf}
-nav{position:sticky;top:0;z-index:5;background:#111;display:flex;gap:6px;overflow-x:auto;padding:8px 12px;-webkit-overflow-scrolling:touch}
-.tab{flex:0 0 auto;text-decoration:none;border:0;background:#2a2a2a;color:#fff;padding:9px 14px;border-radius:999px;font-size:15px;cursor:pointer;white-space:nowrap}
+nav{background:#111;display:grid;grid-template-columns:1fr 1fr;gap:6px;padding:10px max(12px,env(safe-area-inset-left,0px)) 12px}
+.tab{display:flex;align-items:center;justify-content:center;text-align:center;min-height:44px;border:0;background:#2a2a2a;color:#fff;padding:8px 10px;border-radius:12px;font-size:15px;line-height:1.25;cursor:pointer;text-decoration:none;min-width:0;overflow-wrap:anywhere}
 .tab.on{background:var(--g);color:#fff;font-weight:700}
 main{max-width:760px;margin:0 auto;padding:16px}
 h2{color:#111;font-size:24px;margin:4px 0 12px}
@@ -42,6 +42,18 @@ th{background:#111;color:#fff}
 details{margin-top:14px;border:1px solid var(--line);border-radius:12px;padding:10px 14px}
 summary{cursor:pointer;font-weight:700}
 @media (max-width:600px){body{font-size:16px}h2{font-size:22px}}
+
+html{-webkit-text-size-adjust:100%;text-size-adjust:100%}
+main{padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+main,.big,.pick>div,.files,details,.content{min-width:0}
+main p,main li,main td,main h2,main h3,.content,summary{overflow-wrap:anywhere;word-break:normal}
+a.tel{white-space:normal;max-width:100%}
+.flist{display:grid;gap:8px}
+.frow{display:grid;grid-template-columns:1fr auto;gap:2px 8px;padding:12px 14px;border:2px solid var(--line);border-radius:14px;text-decoration:none;color:var(--ink)}
+.frow b{font-size:17px}
+.frow span{grid-column:1;font-size:15px;color:#333}
+.frow i{grid-column:2;grid-row:1/span 4;align-self:center;font-style:normal;font-size:28px;color:var(--g)}
+.back{display:inline-block;margin:0 0 12px;font-weight:700;color:var(--gd);text-decoration:none}
 
 </style></head>
 <body>
@@ -80,17 +92,16 @@ summary{cursor:pointer;font-weight:700}
 </div>
 
 <h3>Всички фабрики накратко</h3>
-<div class="tw"><table class="simple">
-<tr><th>Фабрика</th><th>Сашета?</th><th>Колко бройки минимум</th><th>Отстъпка</th></tr>
-<tr><td><a href="#p-zdraven" data-go="zdraven">Здравен Склад</a></td><td>✅ да</td><td>малко</td><td>10%</td></tr>
-<tr><td><a href="#p-extract" data-go="extract">ExtractPharma</a></td><td>✅ да</td><td>малко</td><td>по-добра цена</td></tr>
-<tr><td><a href="#p-relina" data-go="relina">Relina</a></td><td>✅ да</td><td>питай</td><td>5%</td></tr>
-<tr><td><a href="#p-nutrikal" data-go="nutrikal">Nutrikal</a></td><td>🟡 прах, питай за сашета</td><td>1 000</td><td>3%</td></tr>
-<tr><td><a href="#p-ecoideal" data-go="ecoideal">EcoIdeal</a></td><td>❔ питай</td><td>500</td><td>5%</td></tr>
-<tr><td><a href="#p-nutrend" data-go="nutrend">Nutrend</a></td><td>❔ питай</td><td>500</td><td>по-добра цена</td></tr>
-<tr><td><a href="#p-evelin" data-go="evelin">Евелин 29</a></td><td>❔ питай</td><td>питай</td><td>—</td></tr>
-<tr><td><a href="#p-botanical" data-go="botanical">Botanical</a></td><td>❌ не (правят чай)</td><td>—</td><td>—</td></tr>
-</table></div>
+<div class="flist">
+<a class="frow" href="#p-zdraven" data-go="zdraven"><b>Здравен Склад</b><span>✅ Прави сашета</span><span>Малки поръчки</span><span>Отстъпка 10%</span><i>›</i></a>
+<a class="frow" href="#p-extract" data-go="extract"><b>ExtractPharma</b><span>✅ Прави сашета</span><span>Малки поръчки</span><span>По-добра цена</span><i>›</i></a>
+<a class="frow" href="#p-relina" data-go="relina"><b>Relina</b><span>✅ Прави сашета</span><span>Бройки: питай</span><span>Отстъпка 5%</span><i>›</i></a>
+<a class="frow" href="#p-nutrikal" data-go="nutrikal"><b>Nutrikal</b><span>🟡 Прах, питай за сашета</span><span>Минимум 1 000</span><span>Отстъпка 3%</span><i>›</i></a>
+<a class="frow" href="#p-ecoideal" data-go="ecoideal"><b>EcoIdeal</b><span>❔ Питай за сашета</span><span>Минимум 500</span><span>Отстъпка 5%</span><i>›</i></a>
+<a class="frow" href="#p-nutrend" data-go="nutrend"><b>Nutrend</b><span>❔ Питай за сашета</span><span>Минимум 500</span><span>По-добра цена</span><i>›</i></a>
+<a class="frow" href="#p-evelin" data-go="evelin"><b>Евелин 29</b><span>❔ Питай за сашета</span><span>Бройки: питай</span><i>›</i></a>
+<a class="frow" href="#p-botanical" data-go="botanical"><b>Botanical</b><span>❌ Не, правят чай</span><i>›</i></a>
+</div>
 <p class="small">✅ = правят сашета. 🟡 = правят прах, но не пишат за сашета. ❔ = не пише нищо. Информацията е от MentorMax и не е проверявана с фирмите.</p>
 </section>
 <section class="panel" id="p-questions"><h2>❓ Какво да питаш</h2>
@@ -140,6 +151,7 @@ summary{cursor:pointer;font-weight:700}
 </div>
 </section>
 <section class="panel" id="p-nutrend">
+<a class="back" href="#p-compare" data-go="compare">‹ Всички фабрики</a>
 <h2>❔ Nutrend</h2>
 <div class="big ok"><div class="big-h">Накратко</div><ul class="steps"><li>Сашета: не пише, питай</li><li>Минимум 500 бройки</li><li>Безплатна доставка до София и Пловдив</li></ul><div class="callrow"><a class="tel" href="tel:+359899011533">📞 359 899 011 533</a></div></div>
 <div class="files"><div class="files-h">Файлове и линкове</div><ul><li><a class="btn ghost" href="https://nishava.bg/bg/" target="_blank" rel="noopener">Сайт ↗</a></li></ul></div>
@@ -169,6 +181,7 @@ summary{cursor:pointer;font-weight:700}
 </div></details>
 </section>
 <section class="panel" id="p-ecoideal">
+<a class="back" href="#p-compare" data-go="compare">‹ Всички фабрики</a>
 <h2>❔ EcoIdeal</h2>
 <div class="big ok"><div class="big-h">Накратко</div><ul class="steps"><li>Сашета: не пише, питай</li><li>Минимум 500 бройки</li><li>Те правят регистрацията</li><li>Рецепта 150€, мостра 150€ (от офертата им)</li><li>Отстъпка 5% с код 830904</li></ul><div class="callrow"><a class="tel" href="tel:+359888492226">📞 +359 888 492226</a></div></div>
 <div class="files"><div class="files-h">Файлове и линкове</div><ul><li><a class="btn" href="EcoIdeal-Oferta.pdf" target="_blank" rel="noopener">📎 Оферта от EcoIdeal (PDF): отвори</a></li><li><a class="btn ghost" href="https://www.ecoideal.eu/bg" target="_blank" rel="noopener">Сайт ↗</a></li></ul></div>
@@ -208,6 +221,7 @@ summary{cursor:pointer;font-weight:700}
 </div></details>
 </section>
 <section class="panel" id="p-nutrikal">
+<a class="back" href="#p-compare" data-go="compare">‹ Всички фабрики</a>
 <h2>🟡 Nutrikal</h2>
 <div class="big ok"><div class="big-h">Накратко</div><ul class="steps"><li>Правят прах, питай дали пълнят в сашета</li><li>Минимум 1 000 бройки за собствена рецепта</li><li>Рецепта за прах: 300–500€</li><li>Те правят регистрацията (150€)</li><li>Отстъпка 3%</li></ul><div class="callrow"><a class="tel" href="tel:+359878919137">📞 359 878 919 137</a></div></div>
 <div class="files"><div class="files-h">Файлове и линкове</div><ul><li><a class="btn ghost" href="https://nutrikal.com/bg/pages/private-label" target="_blank" rel="noopener">Сайт (Private Label) ↗</a></li></ul></div>
@@ -263,6 +277,7 @@ summary{cursor:pointer;font-weight:700}
 </div></details>
 </section>
 <section class="panel" id="p-zdraven">
+<a class="back" href="#p-compare" data-go="compare">‹ Всички фабрики</a>
 <h2>✅ Здравен Склад</h2>
 <div class="big ok"><div class="big-h">Накратко</div><ul class="steps"><li>Правят сашета ✅</li><li>Приемат и малки поръчки ✅</li><li>Готово за 10–15 работни дни</li><li>Правят и вкус за праха</li><li>Отстъпка 10%</li></ul><div class="callrow"><a class="tel" href="tel:+359886408830">📞 0886 40 88 30</a></div></div>
 <div class="files"><div class="files-h">Файлове и линкове</div><ul><li><a class="btn ghost" href="https://masterclass.bg/zdraven-sklad" target="_blank" rel="noopener">📝 Въпросник за запитване ↗</a></li></ul></div>
@@ -306,6 +321,7 @@ summary{cursor:pointer;font-weight:700}
 </div></details>
 </section>
 <section class="panel" id="p-relina">
+<a class="back" href="#p-compare" data-go="compare">‹ Всички фабрики</a>
 <h2>✅ Relina</h2>
 <div class="big ok"><div class="big-h">Накратко</div><ul class="steps"><li>Правят сашета ✅</li><li>Бройките за собствена рецепта се уговарят</li><li>Готови формули: минимум 3 000 бройки</li><li>Готово за 4–8 седмици</li><li>Отстъпка 5% за рецептата</li></ul><div class="callrow"><a class="tel" href="tel:+359879343019">📞 359 879 343 019</a></div></div>
 <div class="files"><div class="files-h">Файлове и линкове</div><ul><li><a class="btn ghost" href="https://docs.google.com/document/d/1auB5yzyRA2klgVr3qGCIpS79QSq63HgvshLmvdbTrzw/edit?tab=t.0" target="_blank" rel="noopener">📄 Каталог с готови формули (Google Doc) ↗</a></li><li><a class="btn ghost" href="https://relina.com/" target="_blank" rel="noopener">Сайт ↗</a></li></ul></div>
@@ -347,6 +363,7 @@ summary{cursor:pointer;font-weight:700}
 </div></details>
 </section>
 <section class="panel" id="p-evelin">
+<a class="back" href="#p-compare" data-go="compare">‹ Всички фабрики</a>
 <h2>❔ Евелин 29</h2>
 <div class="big ok"><div class="big-h">Накратко</div><ul class="steps"><li>Сашета: не пише, питай</li><li>Готовите им продукти не са за деца</li><li>Собствена рецепта: 600 лв.</li></ul><div class="callrow"><a class="tel" href="tel:+359884186080">📞 +359 88 4186080</a></div></div>
 <div class="files"><div class="files-h">Файлове и линкове</div><ul><li><a class="btn ghost" href="https://docs.google.com/spreadsheets/d/1btfj39snTGQu3N3ANaAysD2_I3KPzpC6ESgkbD81DLY/edit#gid=0" target="_blank" rel="noopener">💶 Ценова листа на готовите добавки (Google Sheet) ↗</a></li></ul></div>
@@ -396,6 +413,7 @@ summary{cursor:pointer;font-weight:700}
 </div></details>
 </section>
 <section class="panel" id="p-botanical">
+<a class="back" href="#p-compare" data-go="compare">‹ Всички фабрики</a>
 <h2>❌ Botanical</h2>
 <div class="big ok"><div class="big-h">Накратко</div><ul class="steps"><li>Не правят сашета, правят чай ❌</li></ul><div class="callrow"><a class="tel" href="tel:+359893544776">📞 0893544776</a></div></div>
 <div class="files"><div class="files-h">Файлове и линкове</div><ul><li><a class="btn ghost" href="https://botanical.bg/" target="_blank" rel="noopener">Сайт ↗</a></li></ul></div>
@@ -435,6 +453,7 @@ summary{cursor:pointer;font-weight:700}
 </div></details>
 </section>
 <section class="panel" id="p-extract">
+<a class="back" href="#p-compare" data-go="compare">‹ Всички фабрики</a>
 <h2>✅ ExtractPharma</h2>
 <div class="big ok"><div class="big-h">Накратко</div><ul class="steps"><li>Правят сашета ✅</li><li>Приемат и малки поръчки ✅</li><li>Регистрацията я правиш ти, те помагат</li></ul><div class="callrow"><a class="tel" href="tel:+359878177140">📞 0878 177 140</a></div></div>
 <div class="files"><div class="files-h">Файлове и линкове</div><ul><li><a class="btn ghost" href="https://extractpharma.com/pcheli/" target="_blank" rel="noopener">Сайт ↗</a></li></ul></div>
